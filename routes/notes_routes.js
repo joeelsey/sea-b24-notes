@@ -6,6 +6,7 @@ module.exports = function(app) {
     console.log(req.user.basic.email);
     Note.find({}, function(err, data) {
       if (err) return res.status(500).send('there was an error');
+      console.log(res.body);
       res.json(data);
     });
   });
