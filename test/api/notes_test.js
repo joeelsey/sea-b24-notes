@@ -19,7 +19,7 @@ describe('basic notes crud', function() {
   before(function (done) {
     chai.request('http://localhost:3000')
     .post('/api/users')
-    .send({email: 'test9@example.com', password: 'Password123#'})
+    .send({email: 'test@example.com', password: 'foobar123'})
     .end(function (err, res) {
       jwtToken = res.body.jwt;
       done();
@@ -27,7 +27,6 @@ describe('basic notes crud', function() {
   });
 
   it('should be able to create a note', function(done) {
-    //this.timeout(5000)
     chai.request('http://localhost:3000')
     .post('/v1/api/notes/')
     .set({jwt: jwtToken})

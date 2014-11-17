@@ -4,7 +4,6 @@ var User = require('../models/user');
 
 module.exports = function(app, passport) {
   app.get('/api/users', passport.authenticate('basic', {session: false}), function(req, res) {
-    console.log(res.body);
     res.json({'jwt': req.user.generateToken(app.get('jwtSecret'))});
   });
 
@@ -15,7 +14,7 @@ module.exports = function(app, passport) {
 
       var regSpecial = /[a-z A-Z 0-9]{8,32}$/;
       if(!regSpecial.test(req.body.password)){
-        res.status(500).send('bad password');
+        return res.status(500).send('bad password');
       }
 
       var newUser = new User();

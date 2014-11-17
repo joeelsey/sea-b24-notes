@@ -19,7 +19,7 @@ describe('basic notes auth', function() {
   before(function (done) {
     chai.request('http://localhost:3000')
     .post('/api/users')
-    .send({email: 'test11@example.com', password: 'Password123#'})
+    .send({email: 'test@example.com', password: 'foobar123'})
     .end(function (err, res) {
       jwtToken = res.body.jwt;
       done();
@@ -27,11 +27,9 @@ describe('basic notes auth', function() {
   });
 
   it('should be able to get a user', function(done) {
-    //this.timeout(5000)
     chai.request('http://localhost:3000')
     .get('/api/users')
-    .auth('test11@example.com','Password123#')
-    //.set({jwt: jwtToken})
+    .auth('test@example.com','foobar123')
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(res.body).to.have.property('jwt')
@@ -42,7 +40,6 @@ describe('basic notes auth', function() {
   it('should be able to create a user', function(done){
     chai.request('http://localhost:3000')
       .post('/api/users/')
-      //.send({email: "test10@example.com", password: "foobar123"})
       .set({jwt: jwtToken})
       .end(function(err,res){
         expect(err).to.eql(null);
