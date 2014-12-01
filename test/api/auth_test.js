@@ -8,8 +8,8 @@ require('../../server');
 
 var expect = chai.expect;
 
-User.collection.remove(function(err){
-  if(err) throw(err);
+User.collection.remove(function(err) {
+  if (err) throw(err);
 });
 
 describe('basic notes auth', function() {
@@ -37,7 +37,7 @@ describe('basic notes auth', function() {
     });
   });
 
-  it('should be able to create a user', function(done){
+  it('should be able to create a user', function(done) {
     chai.request('http://localhost:3000')
       .post('/api/users/')
       .set({jwt: jwtToken})
