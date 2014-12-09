@@ -8,7 +8,9 @@ var app = express();
 
 mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/notes_development');
 app.use(bodyparser.json());
+
 app.set('jwtSecret', process.env.JWT_SECRET || 'changethisordie');
+app.use(express.static(__dirname + '/build'));
 
 app.use(passport.initialize());
 
