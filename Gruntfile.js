@@ -3,6 +3,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-jscs");
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-clean');
+  grunt.loadNpmTasks('grunt-copy');
 
   grunt.initConfig({
     jshint: {
@@ -22,6 +24,19 @@ module.exports = function(grunt) {
     simplemocha: {
       src: ['test/api/**/notes_test.js','test/api/**/auth_test.js']
     },
+
+  clean: {
+    src: ['build/']
+  },
+
+  copy: {
+    dev: {
+     cwd: 'app/',
+    expand: true,
+    src: ['**/*.html'],
+    dest: 'build/' 
+    }
+  },
 
     browserify: {
     dev: {

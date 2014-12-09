@@ -6,8 +6,11 @@ var bodyparser = require('body-parser');
 var passport = require('passport');
 var app = express();
 
-mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/notes_development');
 app.use(bodyparser.json());
+app.use(express.static(__dirname + '/build'));
+
+mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/notes_development');
+
 app.set('jwtSecret', process.env.JWT_SECRET || 'changethisordie');
 
 app.use(passport.initialize());
