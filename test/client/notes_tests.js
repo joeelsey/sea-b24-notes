@@ -35,7 +35,7 @@ describe('NotesController', function() {
       $httpBackend.expectGET('/api/notes').respond(200, [{'noteBody': 'test note', '_id': '1'}]);
 
       $scope.index();
-  debugger;
+      debugger;
       $httpBackend.flush();
 
       expect($scope.notes).toBeDefined();

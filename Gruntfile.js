@@ -28,16 +28,6 @@ module.exports = function(grunt) {
       src: ['test/api/**/notes_test.js','test/api/**/auth_test.js']
     },
 
-    browserify: {
-    dev: {
-      src: ['notes.js'],
-      dest: './browser/dist/notes.bundle.js',
-      options: {
-          transform: ['debowerify']
-      },
-    },
-  },
-
   test: {
     src: ['test/**/*.js'],
     dest: 'test/test_bundle.js',
@@ -47,7 +37,9 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      src: ['build/']
+      dev: {
+        src: ['build/']
+      }
     },
 
     copy: {
@@ -92,6 +84,6 @@ module.exports = function(grunt) {
   });
   grunt.registerTask('test', ['jshint', 'simplemocha']);
   grunt.registerTask('test:client', ['browserify:test', 'karma:unit']);
-  grunt.registerTask('build', ['jshint', 'clean', 'browserify', 'copy:dev']);
+  grunt.registerTask('build:dev', ['clean:dev', 'copy:dev', 'browserify']);
   grunt.registerTask('default', ['test']);
 };
