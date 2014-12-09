@@ -1,13 +1,14 @@
+'use strict';
+
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks("grunt-jscs");
+  grunt.loadNpmTasks('grunt-jscs');
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-karma');
-
 
   grunt.initConfig({
     jshint: {
@@ -26,14 +27,6 @@ module.exports = function(grunt) {
 
     simplemocha: {
       src: ['test/api/**/notes_test.js','test/api/**/auth_test.js']
-    },
-
-  test: {
-    src: ['test/**/*.js'],
-    dest: 'test/test_bundle.js',
-    options:{
-      transform:['debowerify'],
-      src: ['test/api/**/*.js']
     },
 
     clean: {
@@ -79,8 +72,6 @@ module.exports = function(grunt) {
         browsers: ['PhantomJS']
       }
     }
-  }
-
   });
   grunt.registerTask('test', ['jshint', 'simplemocha']);
   grunt.registerTask('test:client', ['browserify:test', 'karma:unit']);
