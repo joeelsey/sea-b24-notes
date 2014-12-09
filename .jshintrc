@@ -9,7 +9,8 @@
     "beforeEach" : false,
     "after"      : false,
     "afterEach"  : false,
-    "equal"      : false
+    "equal"      : false,
+    "angular"    : true
   },
   "globalstrict": true,
   "quotmark": false,
@@ -22,7 +23,7 @@
   "eqeqeq": true,
   "indent": 2,
   "latedef": true,
-  "maxlen": 100,
+  "maxlen": 120,
   "newcap": true,
   "quotmark": "single",
   "undef": true,
