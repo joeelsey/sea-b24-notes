@@ -18,6 +18,7 @@ require('./services/resource_backend_service')(notesApp);
 
 //controllers
 require('./notes/controllers/notes_controller')(notesApp);
+require('./notes/controllers/users_controller')(notesApp);
 
 notesApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
