@@ -20,5 +20,16 @@ describe('UsersController', function(){
     expect(typeof usersController).toBe('object');
   });
 
-  
+  describe('users tests', function(){
+    beforeEach(angular.mock.inject(function(_$httpBackend_){
+      $httpBackend = _$httpBackend_;
+      $controller = $controllerConstructor('UsersCtrl', {$scope : $scope});
+    }));
+
+    afterEach(function(){
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+    });
+  });
+
 });
