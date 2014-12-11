@@ -23,10 +23,11 @@
   "eqeqeq": true,
   "indent": 2,
   "latedef": true,
-  "maxlen": 120,
+  "maxlen": 200,
   "newcap": true,
   "quotmark": "single",
   "undef": true,
   "unused": true,
-  "eqnull": true
+  "eqnull": true,
+  "sub" : true
 }
