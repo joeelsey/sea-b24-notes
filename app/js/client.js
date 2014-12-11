@@ -7,6 +7,12 @@ require('angular-base64');
 
 var notesApp = angular.module('notesApp', ['ngRoute', 'ngCookies', 'base64']);
 
+require('./users/users')(notesApp);
+
+//directives
+require('./notes/directives/dummy_direc')(notesApp);
+require('./notes/directives/new_note_form_direc')(notesApp);
+
 //services
 require('./services/resource_backend_service')(notesApp);
 
@@ -20,6 +26,6 @@ notesApp.config(['$routeProvider', function($routeProvider) {
     controller: 'notesCtrl'
   })
   .otherwise({
-    redirectTo: '/notes'
+    redirectTo: '/users'
   });
 }]);
