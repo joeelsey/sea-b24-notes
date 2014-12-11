@@ -3,10 +3,10 @@
 module.exports = function(app) {
   app.controller('notesCtrl', ['$scope', '$http', 'ResourceBackend', '$cookies', '$location', function($scope, $http, ResourceBackend, $cookies, $location) {
     var notesBackend = new ResourceBackend('notes');
-    if(!$cookies.jwt || !$cookies.jwt.length > 0) return $location.path('/users');
+    if(!$cookies.jwt || !$cookies.jwt.length) return $location.path('/users');
 
     $http.defaults.headers.common['jwt'] = $cookies.jwt;
-    
+
     $scope.index = function() {
       notesBackend.index()
       .success(function(data) {
@@ -14,7 +14,7 @@ module.exports = function(app) {
       });
     };
 
-    $scope.saveNewNote = function() {
+    $scope.saveNewNote = function(newNote) {
       notesBackend.saveNew(newNote)
       .success(function(data) {
         $scope.notes.push(data);
