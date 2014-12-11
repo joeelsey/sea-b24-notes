@@ -28,7 +28,7 @@ describe('basic notes crud', function() {
 
   it('should be able to create a note', function(done) {
     chai.request('http://localhost:3000')
-    .post('/v1/api/notes/')
+    .post('/api/notes/')
     .set({jwt: jwtToken})
     .send({noteBody: 'hello world'})
     .end(function(err, res) {
@@ -42,7 +42,7 @@ describe('basic notes crud', function() {
 
   it('should be able to get an index', function(done) {
     chai.request('http://localhost:3000')
-    .get('/v1/api/notes')
+    .get('/api/notes')
     .set({jwt: jwtToken})
     .end(function(err, res) {
       expect(err).to.eql(null);
@@ -53,7 +53,7 @@ describe('basic notes crud', function() {
 
   it('should be able to get a single note', function(done) {
     chai.request('http://localhost:3000')
-    .get('/v1/api/notes/' + id)
+    .get('/api/notes/' + id)
     .set({jwt: jwtToken})
     .end(function(err, res) {
       expect(err).to.eql(null);
@@ -64,7 +64,7 @@ describe('basic notes crud', function() {
 
   it('should be able to update a note', function(done) {
     chai.request('http://localhost:3000')
-    .put('/v1/api/notes/' + id)
+    .put('/api/notes/' + id)
     .set({jwt: jwtToken})
     .send({noteBody: 'new note body'})
     .end(function(err, res) {
@@ -76,7 +76,7 @@ describe('basic notes crud', function() {
 
   it('should be able to destroy a note', function(done) {
     chai.request('http://localhost:3000')
-    .delete('/v1/api/notes/' + id)
+    .delete('/api/notes/' + id)
     .set({jwt: jwtToken})
     .end(function(err, res) {
       expect(err).to.eql(null);
