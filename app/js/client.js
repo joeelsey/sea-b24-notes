@@ -2,8 +2,10 @@
 
 require('angular/angular');
 require('angular-route');
+require('angular-cookies');
+require('angular-base64');
 
-var notesApp = angular.module('notesApp', ['ngRoute']);
+var notesApp = angular.module('notesApp', ['ngRoute', 'ngCookies', 'base64']);
 
 //services
 require('./services/resource_backend_service')(notesApp);
