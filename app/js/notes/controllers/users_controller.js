@@ -47,5 +47,25 @@ module.exports = function(app) {
         $scope.errors.push(data);
       });
     };
+
+    $scope.signOut = function() {
+      $scope.errors = [];
+
+      if($scope.errors.length) return;
+
+      $http({
+        method: 'DELETE',
+        url: 'api/users',
+        data: $cookies.jwt
+      })
+      .success(function(data){
+        console.log('logged out!');
+        $location.path('/users');
+      })
+      .error(function(data){
+        console.log(data);
+        $scope.errors.push(data);
+      });
+    };
   }]);
 };
