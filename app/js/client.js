@@ -25,6 +25,10 @@ notesApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'templates/notes/notes_template.html',
     controller: 'notesCtrl'
   })
+  .when('/users', {
+    templateUrl: 'templates/notes/users_view.html',
+    controller: 'UsersCtrl'
+  })
   .otherwise({
     redirectTo: '/users'
   });
