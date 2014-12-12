@@ -4,12 +4,10 @@ module.exports = function(app) {
   app.controller('UsersCtrl', ['$scope', '$http', '$cookies', '$base64', '$location', function($scope, $http, $cookies, $base64, $location){
     $scope.errors = [];
     $scope.signIn = function() {
-      console.log('above all of the code');
       $scope.errors = [];
       console.log($scope.user.email);
       console.log($scope.user.password);
       $http.defaults.headers.common['Authorization'] = 'Basic ' + $base64.encode($scope.user.email + ':' + $scope.user.password);
-      console.log('before the get request');
       $http({
         method: 'GET',
         url: '/api/users'
@@ -50,17 +48,18 @@ module.exports = function(app) {
     };
 
     $scope.signOut = function() {
+      console.log('you pressed the signout button!');
       $scope.errors = [];
 
       if($scope.errors.length) return;
 
       $http({
-        method: 'DELETE',
-        url: 'api/users',
-        data: $cookies.jwt
+        method: 'GET',
+        url: 'api/notes'
       })
       .success(function(){
         console.log('logged out!');
+        $cookies.jwt = null;
         $location.path('/users');
       })
       .error(function(data){
