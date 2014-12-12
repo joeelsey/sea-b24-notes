@@ -4,11 +4,12 @@ module.exports = function(app) {
   app.controller('UsersCtrl', ['$scope', '$http', '$cookies', '$base64', '$location', function($scope, $http, $cookies, $base64, $location){
     $scope.errors = [];
     $scope.signIn = function() {
+      console.log('above all of the code');
       $scope.errors = [];
       console.log($scope.user.email);
       console.log($scope.user.password);
-      $http.defaults.headers.common['Authorization'] = 'Basic' + $base64.encode($scope.user.email + ':' + $scope.user.password);
-
+      $http.defaults.headers.common['Authorization'] = 'Basic ' + $base64.encode($scope.user.email + ':' + $scope.user.password);
+      console.log('before the get request');
       $http({
         method: 'GET',
         url: '/api/users'
@@ -58,7 +59,7 @@ module.exports = function(app) {
         url: 'api/users',
         data: $cookies.jwt
       })
-      .success(function(data){
+      .success(function(){
         console.log('logged out!');
         $location.path('/users');
       })
