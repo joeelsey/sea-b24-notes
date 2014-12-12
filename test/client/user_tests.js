@@ -42,10 +42,6 @@ describe('UsersController', function(){
         passwordConfirmation : 'foobar123'
       };
 
-      // $scope.newUser.email = 'test@example.com';
-      // $scope.newUser.password = 'foobar123';
-      // $scope.newUser.passwordConfirmation = 'foobar123';
-
       $scope.signUp();
       $httpBackend.flush();
 
@@ -53,8 +49,16 @@ describe('UsersController', function(){
     });
 
     it('should get a user', function() {
+      $httpBackend.expectGET('/api/users').respond(200, $cookies.jwt);
 
-    })
+      $scope.user = {
+        email: 'test@example.com',
+        password: 'foobar123'
+      };
+
+      $scope.signIn();
+      $httpBackend.flush();
+    });
   });
 
 });
