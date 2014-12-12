@@ -25,7 +25,7 @@ describe('UsersController', function(){
   describe('users tests', function(){
     beforeEach(angular.mock.inject(function(_$httpBackend_){
       $httpBackend = _$httpBackend_;
-      $controllerConstructor('UsersCtrl', {$scope: $scope, $cookies: $cookies});
+      $controllerConstructor('UsersCtrl', {$scope: $scope});
     }));
 
     afterEach(function(){
@@ -33,17 +33,28 @@ describe('UsersController', function(){
       $httpBackend.verifyNoOutstandingRequest();
     });
 
-    it('should create a user', function(){
-      $httpBackend.expectPOST('/api/users').respond(200,{'email':'test@example.com','password':'foobar123','passwordConfirmation':'foobar123'});
-      // $scope.newUser.email = 'test51@example.com';
-      $scope.newUser.password = 'foobar123';
-      $scope.newUser.passwordConfirmation = 'foobar123';
+    it('should create a user', function() {
+      $httpBackend.expectPOST('/api/users').respond(200, $cookies.jwt);
+
+      $scope.newUser = {
+        email : 'test@example.com',
+        password : 'foobar123',
+        passwordConfirmation : 'foobar123'
+      };
+
+      // $scope.newUser.email = 'test@example.com';
+      // $scope.newUser.password = 'foobar123';
+      // $scope.newUser.passwordConfirmation = 'foobar123';
 
       $scope.signUp();
       $httpBackend.flush();
 
-      expect($scope.newUser).toBeDefined();
+      expect($scope.msg).toEqual('success!');
     });
+
+    it('should get a user', function() {
+
+    })
   });
 
 });

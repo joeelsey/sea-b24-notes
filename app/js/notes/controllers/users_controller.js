@@ -33,11 +33,12 @@ module.exports = function(app) {
 
       $http({
         method: 'POST',
-        url: 'api/users',
+        url: '/api/users',
         data: $scope.newUser,
       })
       .success(function(data){
         console.log('success!');
+        $scope.msg = 'success!';
         $cookies.jwt = data.jwt;
         $location.path('/notes');
       })
@@ -54,7 +55,7 @@ module.exports = function(app) {
       if($scope.errors.length) return;
 
       $http({
-        method: 'GET',
+        method: 'DELETE',
         url: 'api/notes'
       })
       .success(function(){
