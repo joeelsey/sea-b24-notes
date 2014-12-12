@@ -35,5 +35,23 @@ module.exports = function(app) {
         $scope.notes.splice($scope.notes.indexOf(note), 1);
       });
     };
+
+    $scope.signOut = function() {
+      $scope.errors = [];
+
+      $http({
+        method: 'GET',
+        url: 'api/notes'
+      })
+      .success(function(){
+        console.log('logged out!');
+        $cookies.jwt = null;
+        $location.path('/users');
+      })
+      .error(function(data){
+        console.log(data);
+        $scope.errors.push(data);
+      });
+    };
   }]);
 };

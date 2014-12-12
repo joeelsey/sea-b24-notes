@@ -47,26 +47,6 @@ module.exports = function(app) {
         $scope.errors.push(data);
       });
     };
-
-    $scope.signOut = function() {
-      console.log('you pressed the signout button!');
-      $scope.errors = [];
-
-      if($scope.errors.length) return;
-
-      $http({
-        method: 'DELETE',
-        url: 'api/notes'
-      })
-      .success(function(){
-        console.log('logged out!');
-        $cookies.jwt = null;
-        $location.path('/users');
-      })
-      .error(function(data){
-        console.log(data);
-        $scope.errors.push(data);
-      });
-    };
+    
   }]);
 };
