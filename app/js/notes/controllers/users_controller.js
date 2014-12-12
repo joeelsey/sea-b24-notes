@@ -30,7 +30,7 @@ module.exports = function(app) {
       if (!$scope.newUser.email) $scope.errors.push({msg: 'did not specify an email'});
 
       if($scope.errors.length) return;
-
+      $http.defaults.headers.common['Authorization'] = 'Basic ' + $base64.encode($scope.newUser.email + ':' + $scope.newUser.password);
       $http({
         method: 'POST',
         url: '/api/users',
@@ -47,6 +47,6 @@ module.exports = function(app) {
         $scope.errors.push(data);
       });
     };
-    
+
   }]);
 };
