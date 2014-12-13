@@ -36,6 +36,7 @@ module.exports = function(app) {
       });
     };
 
+    //I know this should probably live in a directive so its available on more pages, but it works for now.
     $scope.signOut = function() {
         console.log('logged out!');
         $cookies.jwt = null;
