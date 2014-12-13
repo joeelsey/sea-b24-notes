@@ -14,6 +14,7 @@ module.exports = function(app) {
       })
       .success(function(data) {
         console.log('success');
+        $scope.msg = 'success!';
         $cookies.jwt = data.jwt;
         $location.path('/notes');
       })

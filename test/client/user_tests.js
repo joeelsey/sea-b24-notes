@@ -58,6 +58,8 @@ describe('UsersController', function(){
 
       $scope.signIn();
       $httpBackend.flush();
+
+      expect($scope.msg).toEqual('success!');
     });
   });
 
